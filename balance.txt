@@ -1,6 +1,0 @@
-Total BGN: 1100.0
-Total EUR: 2000.0
-Denomination 10.0: 51
-Denomination 20.0: 52
-Denomination 50.0: 11
-Denomination 100.0: 10

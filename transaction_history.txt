@@ -1,1 +1,0 @@
-deposit: BGN [org.example.model.Denomination@4443041a, org.example.model.Denomination@3ad0fd0, org.example.model.Denomination@15d38ddc] - Amount: 100.00

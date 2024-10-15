@@ -14,16 +14,16 @@ import java.util.Map;
 
 @Service
 public class OperationService {
-    private double totalBgn = 1000; // Начален BGN баланс
-    private double totalEur = 2000; // Начален EUR баланс
-    private Map<Double, Integer> denominations; // Ключ: стойността на обозначението, Стойност: количество
+    private double totalBgn = 1000;
+    private double totalEur = 2000;
+    private Map<Double, Integer> denominations;
 
     public OperationService() {
         denominations = new HashMap<>();
-        denominations.put(50.0, 10); // 10x50 BGN
-        denominations.put(10.0, 50);  // 50x10 BGN
-        denominations.put(100.0, 10); // 10x100 EUR
-        denominations.put(20.0, 50);   // 50x20 EUR
+        denominations.put(50.0, 10);
+        denominations.put(10.0, 50);
+        denominations.put(100.0, 10);
+        denominations.put(20.0, 50);
     }
 
     public Balance processCashOperation(CashOperation operation) {
@@ -49,17 +49,16 @@ public class OperationService {
             }
             totalEur -= operation.getAmount();
         }
-        updateDenominations(operation.getDenominations(), false); // Актуализиране на обозначения след теглене
+        updateDenominations(operation.getDenominations(), false);
     }
 
     private void deposit(CashOperation operation) {
-        // Валидация и извършване на депозит
         if (operation.getCurrency().equals("BGN")) {
             totalBgn += operation.getAmount();
         } else if (operation.getCurrency().equals("EUR")) {
             totalEur += operation.getAmount();
         }
-        updateDenominations(operation.getDenominations(), true); // Актуализиране на обозначения след депозит
+        updateDenominations(operation.getDenominations(), true);
     }
 
     private void updateDenominations(List<Denomination> denominationsList, boolean isDeposit) {
@@ -68,13 +67,13 @@ public class OperationService {
             int quantity = denomination.getQuantity();
 
             if (isDeposit) {
-                denominations.put(value, denominations.getOrDefault(value, 0) + quantity); // Добавяне на обозначения
+                denominations.put(value, denominations.getOrDefault(value, 0) + quantity);
             } else {
                 int currentQuantity = denominations.getOrDefault(value, 0);
                 if (currentQuantity < quantity) {
                     throw new IllegalArgumentException("Insufficient denominations for withdrawal.");
                 }
-                denominations.put(value, currentQuantity - quantity); // Намаляване на обозначения
+                denominations.put(value, currentQuantity - quantity);
             }
         }
     }
@@ -91,7 +90,7 @@ public class OperationService {
         String transactionDetails = String.format("%s: %s %s - Amount: %.2f",
                 operation.getOperationType(),
                 operation.getCurrency(),
-                operation.getDenominations().toString(), // Показва списък от обозначения
+                operation.getDenominations().toString(),
                 operation.getAmount());
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("transaction_history.txt", true))) {
             writer.write(transactionDetails);

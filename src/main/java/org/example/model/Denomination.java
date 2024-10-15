@@ -1,16 +1,16 @@
 package org.example.model;
 
 public class Denomination {
-    private String type;    // Тип на банкнотата (например "BGN_10")
-    private int quantity;    // Количество на банкнотите
-    private double value;    // Стойността на деноминацията
+    private String type;
+    private int quantity;
+    private double value;
 
     public Denomination() {}
 
     public Denomination(String type, int quantity, double value) {
         this.type = type;
         this.quantity = quantity;
-        this.value = value;  // Инициализиране на стойността
+        this.value = value;
     }
 
     public String getType() {
@@ -29,7 +29,7 @@ public class Denomination {
         this.quantity = quantity;
     }
 
-    public double getValue() { // Методът getValue() трябва да е дефиниран
+    public double getValue() {
         return value;
     }
 

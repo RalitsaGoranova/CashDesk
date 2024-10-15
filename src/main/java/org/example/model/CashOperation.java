@@ -6,17 +6,17 @@ import java.util.List;
 
 public class CashOperation {
     @NotNull
-    private String operationType; // "withdrawal" или "deposit"
+    private String operationType;
 
     @NotNull
     @Min(1)
-    private Double amount; // Сумата на операцията
+    private Double amount;
 
     @NotNull
-    private String currency; // "BGN" или "EUR"
+    private String currency;
 
     @NotNull
-    private List<Denomination> denominations; // Списък от обозначения
+    private List<Denomination> denominations;
 
     public CashOperation() {}
 
